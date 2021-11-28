@@ -6,7 +6,7 @@ const getAll = (req, res) => {
     try {
       const items = await Item.find({});
       if(items.length === 0) {
-        return res.status(200).send("There are no items yet");
+        return res.status(200).json({message: "There are no items yet"});
       }
       return res.status(200).json(items);
     } catch (error) {
@@ -86,7 +86,7 @@ const getAllSales = (req, res) => {
     try {
       const sales = await Sale.find({});
       if(sales.length === 0) {
-        return res.status(200).send("There are no sales yet");
+        return res.status(200).json({message: "There are no sales yet"});
       }
       return res.status(200).json(sales);
     } catch (error) {
