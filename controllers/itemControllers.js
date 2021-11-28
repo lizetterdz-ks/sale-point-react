@@ -33,10 +33,10 @@ const getById = (req, res) => {
 }
 
 const postItem = (req, res) => {
-  const { name, price, stock } = req.body
+  const { name, price, stock, timesSold } = req.body
   async function addItem() {
     try {
-      const item = await Item.create({name, price, stock});
+      const item = await Item.create({name, price, stock, timesSold});
       return res.status(200).json(item);
     } catch (error) {
       return res.status(500).json({message: 'Error creating item'});
@@ -63,12 +63,12 @@ const removeItem = (req, res) => {
 
 const putItem = (req, res) => {
   const { id } = req.params;
-  const { name, price, stock } = req.body;
+  const { name, price, stock, timesSold } = req.body;
   async function updateItem() {
     try {
       const item = await Item.findByIdAndUpdate(
           id,
-          { name, price, stock }
+          { name, price, stock, timesSold }
       );
       if (item === null) {
         return res.status(404).send("There's no match for that ID")
